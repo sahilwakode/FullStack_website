@@ -11,18 +11,18 @@ function App() {
     
       <Header/>
    <Home/>
-      <Router>
-        <div className="app">
-          <Routes>
-            <Route path='/checkout'>
-              <Header>
-                <h1>Checkout Page</h1>
-              </Header>
-            </Route>
-            </Routes>
+//       <Router>
+//         <div className="app">
+//           <Routes>
+//             <Route path='/checkout'>
+//               <Header>
+//                 <h1>Checkout Page</h1>
+//               </Header>
+//             </Route>
+//             </Routes>
             
-        </div>
-      </Router>
+//         </div>
+//       </Router>
    {/* <Router>
     <div className="App">
       <Routes>
