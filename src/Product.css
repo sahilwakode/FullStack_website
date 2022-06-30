@@ -32,6 +32,15 @@
     color: #111;
   }
   
+  .product > button:hover {
+    background: #f0be19;
+    border: 1px solid;
+    width: 150px;
+    margin-top: 10px;
+    border-color: #694c02 #9c7e31 #846a29;
+    color: #111;
+  }
+  
   .product__price {
     margin-top: 5px;
     margin-left: 0;

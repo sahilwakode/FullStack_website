@@ -2,13 +2,28 @@ import React from 'react'
 import './Header.css'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/AddShoppingCart';
+// import { Link } from '@mui/material';
+import { Link } from 'react-router-dom';
+import {useStateValue} from './StateProvider';
+import { auth } from './firebase';
+
 function Header() {
+    const [{basket,user},dispatch]=useStateValue();
+    const handleAuthentication=()=>{
+        if(user){
+            auth.signOut();
+        }
+    }
   return (
+    
     <div className='header'>
-    <img
+        <Link to="/">
+        <img
     className='header_logo'
     src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ82Io_97oYZWyD8sw7QWy9V7X1ucalRIJCwm_VDLyJiJCb7FLicu9LI8qL_y8DZma2Teg&usqp=CAU'
     />
+        </Link>
+    
     
     <div className="header__search">
         <input
@@ -19,15 +34,19 @@ function Header() {
          className='header__searchIcon'/>
     </div>
     <div className="header__nav">
-        <div className="header__option">
+        <Link to={!user&&"./login"}>
+        
+        <div onClick={handleAuthentication}
+        className="header__option">
             <span className='header__optionLineOne'>
-            Hello Guest
+            Hello {!user?'Guest':user.email}
             </span>
             <span className='header__optionLineTwo'>
-            Sign In
+            {user?'Sign Out':'Sign In'}
             </span>
-
+            
         </div>
+        </Link>
         <div className="header__option">
         <span className='header__optionLineOne'>
             Returns
@@ -48,12 +67,15 @@ function Header() {
         
        
     </div>
-    <div className="header__optionBasket">
+ <Link to="/checkout">
+         <div className="header__optionBasket">
             < ShoppingBasketIcon/>
             <span className='header__optionLineTwoheader__basketCount'>
-             0
+             {basket?.length}
             </span>
         </div>
+ </Link>
+
     </div>
   )
 }
